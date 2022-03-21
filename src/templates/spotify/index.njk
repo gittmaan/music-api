@@ -1,0 +1,37 @@
+{% extends "layouts/base.njk" %}
+
+{% block content %}
+  <div>
+    <div class="max-w-screen-md mx-auto">
+      <div class="bg-white shadow px-6 py-8">
+        <h1 class="text-2xl text-center font-bold mb-4">Spotify App</h1>
+
+        <div class="grid grid-cols-1 gap-y-5">
+
+          <template x-for="(artist, index) in fetchAllArtists()" :key="`artist-{$index}`">
+            <div class="flex artists-center cursor-pointer" @click="faq_selected !== index ? faq_selected = index : faq_selected = null">
+              <div class="bg-indigo-100 text-indigo-400 w-8 h-8 md:w-10 md:h-10 rounded-md flex artists-center justify-center font-bold text-lg font-display">
+                <span x-text="index + 1"></span>
+              </div>
+              <div class="ml-3 md:ml-4 lg:ml-6 md:text-lg text-indigo-600">
+                <span x-text="artist.name"></span>
+              </div>
+            </div>
+            <div class="relative overflow-hidden transition-all max-h-0 duration-700" x-bind:style="faq_selected === index ? `max-height:  ${ $el.scrollHeight }px` : ``">
+              <div class="text-gray-700 ml-8 md:ml-10 pl-3 md:pl-4 lg:pl-6 py-2 space-y-3">
+
+                <template x-for="(ans, index) in artist.name" :key="`artist-ans-{$index}`">
+                  <p x-text="ans"></p>
+                </template>
+
+              </div>
+            </div>
+          </div>
+          </template>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+{% endblock %}

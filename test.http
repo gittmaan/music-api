@@ -1,0 +1,8 @@
+### Get Artist by artistId ["2DaxqgrOhkeH0fpeiQq2f4", "2ooIqOf4X2uz4mMptXCtie", "45PG2L6Fh2XvYL4ONzpdoW", "43ZHCT0cAZBISjO8DG9PnE"]
+GET http://localhost:3000/api/v1/artists/2DaxqgrOhkeH0fpeiQq2f4 HTTP/1.1
+
+### Get Track by isrc [USVT10300001, USEE10001992, GBAYE0601498, USWB11403680, GBAYE0601477, GBAYE6700149, TCAEG1949593]
+GET http://localhost:3000/api/v1/tracks/USVT10300001 HTTP/1.1
+
+### Get All Artists
+GET http://localhost:3000/api/v1/artists HTTP/1.1

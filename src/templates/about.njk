@@ -1,0 +1,53 @@
+{% extends "layouts/base.njk" %}
+
+{% block content %}
+  <h1 class="text-3xl font-bold uppercase mb-4">About</h1>
+  <h2 class="text-3xl mb-4">API Coding Challenge Summary</h2>
+  <p>A REST-API for storing metadata of music tracks to a Relational Database, fetching the metadata from the external Spotify REST API.</p>
+  <h2 class="text-3xl mb-4">Framework Requirements:</h2>
+  <p> Implement in JS or TS using a lightweight node framework such (express, koa, fastify etc.)</p>
+  <p> Ideally we would like to see an ORM in place too (sequelize, mikroorm, typeorm etc.).</p>
+  <p> To document the API you are creating, feel free to use swagger.io</p>
+  <h2 class="text-3xl mb-4">Code Challenge API Details:</h2>
+  <p> Write access: There should be a single endpoint to trigger for the creation of a track, which takes a single value “ISRC”</p>
+  <p> Input is just the ISRC</p>
+  <p> An ISRC is more or less an identifier of a music track, see “Spotify API”</p>
+  section below
+  <p> As soon as the call comes in, use the Spotify API to fetch the following metadata:</p>
+  <p> Spotify Image URI</p>
+  <p> Title</p>
+  <p> Artist Name List</p>
+  <p> In case the SpotifyAPI returns multiple tracks take the track with highest popularity (an attribute in the Json)</p>
+  <p> Store the ISRC and the additional metadata into the DB</p>
+  <p> No need to care about updating an already existing ISRC, skipping or</p>
+  give back an error is enough.
+  <p> Read access: There should be 2 endpoints to retrieve metadata</p>
+  <p> By “ISRC”: single result</p>
+  <p> By “artist”: multiple results</p>
+  <p> "like" search in the DB</p>
+  <p> Multiple results (list/array)</p>
+  <h2 class="text-3xl mb-4">Spotify API Details:</h2>
+  <p> You should use this API to retrieve the metadata of a music track which is identified by an ISRC</p>
+  <p> Create a developer account at Spotify: https://developer.spotify.com/</p>
+  <p> As the challenge is about creating an API which uses the Spotify API, OAuth “Client</p>
+  Credentials Flow” should be used as authorization:
+  https://developer.spotify.com/documentation/general/guides/authorization-guide/#client-c redentials-flow
+  <p> No need to cache the token for the code challenge, it's ok to grab it on each API Call</p>
+  <p> Spotify API Endpoints you might use</p>
+  <p> https://api.spotify.com/v1/search?q=thetitle&type=track</p>
+  <p> Search for track using the title</p>
+  <p> You can use that call to find out ISRCs of music tracks</p>
+  <p> Some sample ISRC you can use: USVT10300001, USEE10001992,</p>
+  GBAYE0601498, USWB11403680, GBAYE0601477
+  <p> Feel free to search for some by yourself, the get by artists</p>
+  endpoint might need more tracks for the same artist <p> https://api.spotify.com/v1/search?q=isrc:USEE10001992&type=track</p>
+  <p> Get track data by ISRC</p>
+  <h2 class="text-3xl mb-4">Details, Suggestions etc.:</h2>
+  <p> Choose a Database you are most productive with, MSSQL, MySQL, PostgreSQL whatever.</p>
+  <p> You can choose the way you store the metadata. Normalized table(s), semistructured tables by storing JSON/Arrays into the DB, etc.</p>
+  <p> For the track->artist relation, it is not necessary to create a many-to-many relationship. A simple parent (track) -> child (artists) relation is enough</p>
+  <p> The design of the REST API is up to you (GET/POST/PUT, query parameters, naming, hierarchy etc.)</p>
+  <p> Of course, we want to see the API in action ;)</p>
+  <p> Use the client of your choice (Postman, Curl, Httpie etc.) to demo it</p>
+  <p> How would you secure your API endpoints? (in detail)</p>
+{% endblock %}
